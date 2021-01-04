@@ -55,13 +55,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\Enemy.cs" />
-     <Compile Include="Assets\Scripts\GameManager.cs" />
-     <Compile Include="Assets\Scripts\Laser.cs" />
-     <Compile Include="Assets\Scripts\Player.cs" />
-     <Compile Include="Assets\Scripts\PowerUp.cs" />
-     <Compile Include="Assets\Scripts\SpawnManager.cs" />
-     <Compile Include="Assets\Scripts\UIManager.cs" />
+     <Compile Include="Assets\Scripts\Game\Enemy.cs" />
+     <Compile Include="Assets\Scripts\Game\GameManager.cs" />
+     <Compile Include="Assets\Scripts\Game\Laser.cs" />
+     <Compile Include="Assets\Scripts\Game\Player.cs" />
+     <Compile Include="Assets\Scripts\Game\PowerUp.cs" />
+     <Compile Include="Assets\Scripts\Game\SpawnManager.cs" />
+     <Compile Include="Assets\Scripts\Game\UIManager.cs" />
+     <Compile Include="Assets\Scripts\Main Menu\MainMenu.cs" />
      <None Include="Assets\Materials\Shaders\Galaxy.shader" />
  <Reference Include="UnityEngine">
  <HintPath>E:/Unity/Hub/Editor/2019.4.17f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
