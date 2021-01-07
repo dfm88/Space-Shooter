@@ -8,6 +8,9 @@ public class Enemy : MonoBehaviour
     private float _enemySpeed = 4f;
 
     private Player _player;
+    //handle to Animator controller onEnemyDeath
+    [SerializeField]
+    private Animator _anim;
 
 
     // Start is called before the first frame update
@@ -18,6 +21,17 @@ public class Enemy : MonoBehaviour
 
         _player = GameObject.Find("Player").GetComponent<Player>();
 
+        if(_player == null)
+        {
+            Debug.LogError("Player is null in Enemy.cs");
+        }
+
+        _anim = GetComponent<Animator>();//don't have to find it cause already attached to Enmy Object
+
+        if(_anim==null)
+        {
+            Debug.LogError("Animation is null in Enemy.cs");
+        }
 
     }
 
@@ -45,9 +59,9 @@ public class Enemy : MonoBehaviour
             {
                 player.Damage();
             }
-           
-            Destroy(this.gameObject); //se collido con un player, distruggi l'Enemy
-           
+
+            enemyDestroyed();
+
         }
 
         if (other.tag == "Laser")
@@ -58,13 +72,21 @@ public class Enemy : MonoBehaviour
             {
                 _player.scoreFormKillEnemy(10);
             }
-            
-            Destroy(this.gameObject);
+
+            enemyDestroyed();
 
         }
 
 
 
+    }
+
+    private void enemyDestroyed()
+    {
+        _anim.SetTrigger("onEnemyDeath"); //trigger that calls the destoy animation
+        _enemySpeed = 0; //have to stop enemy speed so I don't get hit in the seconds the animationruns
+        Destroy(this.gameObject, 2.8f); //se collido con un player, distruggi l'Enemy, imposto 2.8 sec
+                                        //prima della distruzione per lasciare correre l'animazione
     }
    
 

@@ -15,8 +15,10 @@ public class SpawnManager : MonoBehaviour
     private bool stopSpawnEnemis = false;
 
 
-    // Start is called before the first frame update
-    void Start()
+   
+    //metodo che sarà chiamato dalla classe Asteroid, in modo che solo dopo che l'asteroide
+    //sarò distrutto si potranno iniziare a spawnare i nemici
+    public void startSpawning()
     {
         //special method to start a Coroutine
         StartCoroutine(SpawnEnemyRoutine());
