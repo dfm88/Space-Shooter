@@ -30,6 +30,12 @@ public class Player : MonoBehaviour
     private int _score;
     private UIManager _uiManag;
 
+    [SerializeField]
+    private AudioClip _laserSoundClip;
+    [SerializeField]
+    private AudioSource _audioSource;
+
+
     
 
    
@@ -43,12 +49,23 @@ public class Player : MonoBehaviour
         //Find the object, then get the component, withe tag ora name of GameObj
         _spawnMan = GameObject.Find("Spawn_Manager").GetComponent<SpawnManager>();
 
+        _audioSource = GetComponent<AudioSource>();
+
         _uiManag = GameObject.Find("Canvas").GetComponent<UIManager>();
 
         //Nullity check
         if (_spawnMan == null || _uiManag == null)
         {
             Debug.LogError("The Spawn Manager or Ui Manager is null in Player.cs");
+        }
+
+        if(_audioSource==null)
+        {
+            Debug.LogError("AudioSource is null in Player.cs");
+        }
+        else
+        {
+            _audioSource.clip = _laserSoundClip;
         }
         
 
@@ -82,6 +99,8 @@ public class Player : MonoBehaviour
             // Debug.Log("space key pressed"); with 1.05 offset from player x position
             Instantiate(_laserPrefab, transform.position + new Vector3(0, 1.05f, 0), Quaternion.identity); //crea un laser
         }
+
+        _audioSource.Play();
     }
 
     void movementsManager()

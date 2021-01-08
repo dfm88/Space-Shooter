@@ -43,7 +43,7 @@ public class Enemy : MonoBehaviour
 
         if (transform.position.y < -6f)
         {
-            Start();
+            Destroy(this.gameObject);
         }
     }
 
@@ -72,6 +72,10 @@ public class Enemy : MonoBehaviour
             {
                 _player.scoreFormKillEnemy(10);
             }
+
+            Destroy(GetComponent<Collider2D>());  // distruggo il collider in quanto, siccome il nemico come oggetto lo distruggo
+            //dopo 2.8 secondi (vedi metodo sotto) per poter riprodurre l'animazione, se sparo di nuovo essendoci ancora il collider posso ancora 
+            //colpire il nemico, invece ditruggendo il collider, anche se il nemico c'è ancora anche se non si vede, non posso colpirlo
 
             enemyDestroyed();
 
